@@ -71,7 +71,7 @@
 ?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
-    <form action="index.php" method="post">
+    <form action="./" method="post">
       Enter Tracking Number(s):
       <textarea name="itemcode" rows="3" cols="15" tabindex=1></textarea><br>
       <input type="submit" value="Submit">
