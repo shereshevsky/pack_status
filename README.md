@@ -1,20 +1,11 @@
-=======
-inosync
-=======
+# pack_status
 
-:Author: `Alexander Shereshevsky <Shereshevsky@gmail.com>`_
-:Version: 0.1
-:Web: http://github.com/shereshevsky/pack_status
-:Git: ``git clone https://github.com/shereshevsky/pack_status``
-:Download: http://github.com/shereshevsky/pack_status/downloads
+## About
 
-Rationale
-=========
+**pack_status** is a small script to check delivery status of mail packages sent to Israel. 
 
+Git:
+$git clone https://github.com/shereshevsky/pack_status
 
-Usage
-=====
-
-
-Bugs
-====
+Download:
+$http://github.com/shereshevsky/pack_status/downloads
