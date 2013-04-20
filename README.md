@@ -9,3 +9,7 @@ Git:
 
 Download:
 >http://github.com/shereshevsky/pack_status/downloads
+
+## ToDo
+* Periodic checks
+* Notification mails
