@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Package Status Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -52,16 +52,34 @@
     </div>
 
     <div class="container">
-
+    
       <h1>Package Status Checker</h1>
+<?php
+      $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
+
+      if ($itemcode) {
+        include('simple_html_dom.php');
+        include('get_status_functions.php');
+        $itemcodeArr = array();
+        $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
+        $itemcodeArr = array_unique($itemcodeArr);
+
+        foreach ($itemcodeArr as $item) 
+          get_status_israpost($item);
+
+      }else{
+?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
-    <form action="get_status.php" method="post">
-      Enter Tracking Number:
-      <textarea name="itemcode" rows="4" cols="30" tabindex=1></textarea><br>
+    <form action="index.php" method="post">
+      Enter Tracking Number(s):
+      <textarea name="itemcode" rows="3" cols="15" tabindex=1></textarea><br>
       <input type="submit" value="Submit">
     </form>
 
+<?php
+}
+?>
 
     </div> <!-- /container -->
 
