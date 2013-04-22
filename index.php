@@ -75,9 +75,10 @@
 
     <form action="<?php $PHP_SELF ?>" method="post">
       Enter Tracking Number(s):
-      <textarea name="itemcode" rows="3" cols="15"></textarea><br>
+      <textarea name="itemcode" rows="3" cols="15"></textarea>
+      <?php  if(isset($itemcode)) echo $itemcode; ?><br>
       <input type="text" name="email" class="input-long" id="email" value="<?php echo $_POST["email"]; ?>" />
-      <?php  if(isset($errEmail)) echo $errEmail; ?>
+      <?php  if(isset($errEmail)) echo $errEmail; ?><br>
       <input type="submit" value="Submit">
     </form>
 
