@@ -55,15 +55,17 @@
     
       <h1>Package Status Checker</h1>
 <?php
-      $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
-
-      if ($itemcode) {
+      if(isset($_POST['submit'])) {
         include('simple_html_dom.php');
         include('get_status_functions.php');
+        $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
         $itemcodeArr = array();
         $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
         $itemcodeArr = array_unique($itemcodeArr);
 
+        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+          $errEmail = '<div class="errtext">Please enter a valid email.</div>';
+        
         foreach ($itemcodeArr as $item) 
           get_status_israpost($item);
 
@@ -71,9 +73,11 @@
 ?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
-    <form action="./" method="post">
+    <form action="<?php $PHP_SELF ?>" method="post">
       Enter Tracking Number(s):
-      <textarea name="itemcode" rows="3" cols="15" tabindex=1></textarea><br>
+      <textarea name="itemcode" rows="3" cols="15"></textarea><br>
+      <input type="text" name="email" class="input-long" id="email" value="<?php echo $_POST["email"]; ?>" />
+      <?php  if(isset($errEmail)) echo $errEmail; ?>
       <input type="submit" value="Submit">
     </form>
 
