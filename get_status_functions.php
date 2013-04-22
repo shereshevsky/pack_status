@@ -19,10 +19,12 @@ function get_status_israpost($itemcode) {
 	foreach($html->find('div#itemcodeinfoPrt') as $e)
 		$txt .= $e->innertext . '<br>';
 
-	if (strrpos($txt, "There is no information") <> 0)
+	if (strrpos($txt, "There is no information") <> 0 || strrpos($txt, "No information is available") <> 0)
 		echo "There is no information regarding the package $itemcode, your email was added to notification list";
 	elseif (strrpos($txt, "The postal item was delivered") <> 0)
 		echo $txt;
+	// else
+	// 	echo $txt;
 	$html->clear();
 	unset($html);
 }
