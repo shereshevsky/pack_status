@@ -58,26 +58,36 @@
       if(isset($_POST['itemcode'])) {
         include('simple_html_dom.php');
         include('get_status_functions.php');
+        $FORMOK = TRUE;
+
         $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
+
         $itemcodeArr = array();
         $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
         $itemcodeArr = array_unique($itemcodeArr);
 
-        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0)
-          $errEmail = '<div class="errtext">Please enter a valid email.</div>';
-        
-        foreach ($itemcodeArr as $item) 
-          get_status_israpost($item);
+        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+          $FORMOK = FALSE;
+        }
 
+        foreach ($itemcodeArr as $item)
+          if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
+            $FORMOK = FALSE;
+          }
+
+          if($FORMOK)
+            get_status_israpost($item);
+          else
+            header( 'Location: index.php' ) ;
       }else{
 ?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
-    <form action="<?php $PHP_SELF ?>" method="post">
+    <form action="index.php" method="post">
       Tracking Number(s):
       <textarea name="itemcode" rows="3" cols="16"></textarea><br>
       Email for Notifications:
-      <input type="text" name="email" class="input-long" id="email" value="<?php echo $_POST["email"]; ?>" />
+      <input type="text" name="email" />
       <?php  if(isset($errEmail)) echo $errEmail; ?><br>
       <input type="submit" value="Submit">
     </form>

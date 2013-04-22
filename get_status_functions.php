@@ -15,9 +15,14 @@ function get_status_israpost($itemcode) {
 	 
 	$html= file_get_html("http://www.israelpost.co.il/itemtrace.nsf/mainsearch?OpenForm&L=EN&itemcode=$itemcode", false, $context);
 
+	$txt = "";
 	foreach($html->find('div#itemcodeinfoPrt') as $e)
-		echo $e->innertext . '<br>';
+		$txt .= $e->innertext . '<br>';
 
+	if (strrpos($txt, "There is no information") <> 0)
+		echo "There is no information regarding the package $itemcode, your email was added to notification list";
+	elseif (strrpos($txt, "The postal item was delivered") <> 0)
+		echo $txt;
 	$html->clear();
 	unset($html);
 }
