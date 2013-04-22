@@ -74,7 +74,7 @@
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
     <form action="<?php $PHP_SELF ?>" method="post">
-      Tracking Number(s):
+      Tracking Number(s):    
       <textarea name="itemcode" rows="3" cols="15"></textarea><br>
       Email for Notifications:
       <input type="text" name="email" class="input-long" id="email" value="<?php echo $_POST["email"]; ?>" />
