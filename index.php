@@ -63,7 +63,7 @@
         $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
         $itemcodeArr = array_unique($itemcodeArr);
 
-        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0)
           $errEmail = '<div class="errtext">Please enter a valid email.</div>';
         
         foreach ($itemcodeArr as $item) 
