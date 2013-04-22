@@ -55,7 +55,7 @@
     
       <h1>Package Status Checker</h1>
 <?php
-      if(isset($_POST['submit'])) {
+      if(isset($_POST['itemcode'])) {
         include('simple_html_dom.php');
         include('get_status_functions.php');
         $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
@@ -75,8 +75,7 @@
 
     <form action="<?php $PHP_SELF ?>" method="post">
       Enter Tracking Number(s):
-      <textarea name="itemcode" rows="3" cols="15"></textarea>
-      <?php  if(isset($itemcode)) echo $itemcode; ?><br>
+      <textarea name="itemcode" rows="3" cols="15"></textarea><br>
       <input type="text" name="email" class="input-long" id="email" value="<?php echo $_POST["email"]; ?>" />
       <?php  if(isset($errEmail)) echo $errEmail; ?><br>
       <input type="submit" value="Submit">
