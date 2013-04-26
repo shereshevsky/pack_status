@@ -51,9 +51,9 @@ function fn_periodic_check() {
 	global $db;
 	
 	$five_days_ago = date('Y-m-d', time() - (5 * 24 * 60 * 60));
-	$sql = "delete from requests where added < ?";
+	$sql = "delete from requests where added < '$five_days_ago'";
 	print $sql;
-	$db->query($sql, array($five_days_ago));
+	$db->rawQuery($sql);
 
 	$sql = "select tr_number, email from requests";
 	$results = $db->query($sql);
