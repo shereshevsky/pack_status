@@ -1,7 +1,4 @@
 <?php
-require_once('MysqliDb.php');
-$db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
-
 
 function fn_israpost($itemcode, $email) {
 
