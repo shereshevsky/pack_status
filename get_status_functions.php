@@ -52,9 +52,9 @@ function fn_periodic_check() {
 	$db->num_rows('DELETE FROM requests WHERE added < ?',$five_days_ago); 
 
 	$results = $db->query("SELECT tr_number, email  FROM requests");
-	foreach ($results as $request) {
-		fn_israpost($request['tr_number'], $request['email'], true);
-	}
+	//foreach ($results as $request) {
+	//	fn_israpost($request['tr_number'], $request['email'], true);
+	//}
 
 	echo "requests: ";
 	print_r($results);
