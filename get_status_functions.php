@@ -23,13 +23,14 @@ function fn_israpost($itemcode, $email, $periodic) {
 	if (strrpos($txt, "There is no information") <> 0 || strrpos($txt, "No information is available") <> 0) {
 		fn_save_mail($itemcode, $email);
 		return "There is no information regarding the package $itemcode, your email was added to notification list";
-	} elseif (strrpos($txt, "The postal item was delivered") <> 0) {
+	}elseif (strrpos($txt, "ברקוד לא חוקי") <> 0) {
+		return "Invalid Tracking number";
+	}elseif (strrpos($txt, "The postal item was delivered") <> 0) {
 		if ($periodic)
 			fn_send_mail($itemcode, $email, $txt);
 		else 
 			return $txt;
-	}
-	else{
+	}else{
 		return $txt;
 	}
 }
