@@ -25,6 +25,7 @@ function fn_israpost($itemcode, $email, $periodic) {
 	}elseif (strrpos($txt, "The postal item was delivered") <> 0) {
 		if ($periodic)
 			fn_send_mail($itemcode, $email, $txt);
+			fn_delete_request($itemcode, $email);
 		else 
 			return "$itemcode: ".substr($txt, strpos($txt, "</h3>"));
 	}else{
@@ -52,12 +53,16 @@ function fn_periodic_check() {
 	$db->num_rows('DELETE FROM requests WHERE added < ?',$five_days_ago); 
 
 	$results = $db->query("SELECT tr_number, email  FROM requests LIMIT ?",100);
-	//foreach ($results as $request) {
-	//	fn_israpost($request['tr_number'], $request['email'], true);
-	//}
+	foreach ($results as $request) {
+		fn_israpost($request['tr_number'], $request['email'], true);
+	}
+}
 
-	echo "requests: ";
-	print_r($results);
+function fn_delete_request($itemcode, $email) {
+	global $db;
+
+	$db->num_rows("DELETE FROM requests WHERE email = ? AND tr_number = ?", $email, $itemcode); 
+
 }
 
 ?>
