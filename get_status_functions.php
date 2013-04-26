@@ -49,8 +49,9 @@ function fn_send_mail($itemcode, $email, $txt) {
 
 function fn_periodic_check() {
 	global $db;
-	$sql = "delete from requests where added < DATE_SUB(NOW(),INTERVAL 5 DAY)";
-	$db->query($sql);
+	//$sql = "delete from requests where added < DATE_SUB(NOW(),INTERVAL 5 DAY)";
+	$db->where('added', '< DATE_SUB(NOW(),INTERVAL 5 DAY)');
+	$db->delete('requests');
 	$sql = "select tr_number, email from requests";
 	$results = $db->query($sql);
 	foreach ($results as $request) {
