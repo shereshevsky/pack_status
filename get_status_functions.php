@@ -51,7 +51,7 @@ function fn_periodic_check() {
 	$five_days_ago = date('Y-m-d', time() - (5 * 24 * 60 * 60));
 	$db->num_rows('DELETE FROM requests WHERE added < ?',$five_days_ago); 
 
-	$results = $db->query("SELECT tr_number, email  FROM requests");
+	$results = $db->query("SELECT tr_number, email  FROM requests LIMIT ?",100);
 	//foreach ($results as $request) {
 	//	fn_israpost($request['tr_number'], $request['email'], true);
 	//}
