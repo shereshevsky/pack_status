@@ -38,7 +38,7 @@ function fn_save_mail($itemcode, $email) {
 		'email' => $email,
 		'tr_number' => $itemcode
 	);
-	$db->num_rows("INSERT INTO requests(email,tr_number) VALUES(?,?)", $email, $itemcode,); 
+	$db->num_rows("INSERT INTO requests(email,tr_number) VALUES(?,?)", $email, $itemcode); 
 }
 
 function fn_send_mail($itemcode, $email, $txt) {
