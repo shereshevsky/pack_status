@@ -51,6 +51,7 @@ function fn_periodic_check() {
 	global $db;
 	$sql = "select tr_number, email from requests";
 	$results = $db->query;
+	echo "requests: ";
 	print_r($resulst);
 }
 
