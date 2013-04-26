@@ -58,11 +58,12 @@
       include('simple_html_dom.php');
       include('get_status_functions.php');
       require_once('MysqliDb.php');
+      $db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
+      
       if(isset($_REQUEST['periodic'])) {
         fn_periodic_check();
       }
       elseif(isset($_POST['itemcode'])) {
-        $db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
         //$FORMOK = TRUE;
 
         $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
