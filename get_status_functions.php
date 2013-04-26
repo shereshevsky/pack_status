@@ -23,9 +23,10 @@ function fn_israpost($itemcode, $email, $periodic) {
 	}elseif (strrpos($txt, "ברקוד לא חוקי") <> 0) {
 		return "$itemcode: Invalid Tracking number.";
 	}elseif (strrpos($txt, "The postal item was delivered") <> 0) {
-		if ($periodic)
+		if ($periodic) {
 			fn_send_mail($itemcode, $email, $txt);
 			fn_delete_request($itemcode, $email);
+		}
 		else 
 			return "$itemcode: ".substr($txt, strpos($txt, "</h3>"));
 	}else{
