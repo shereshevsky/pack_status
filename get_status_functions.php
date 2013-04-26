@@ -51,7 +51,7 @@ function fn_periodic_check() {
 	global $db;
 	
 	$sql = "delete from requests where added < ?";
-	$db->rawQuery($sql, 'DATE_SUB(NOW(),INTERVAL 5 DAY)');
+	$db->rawQuery($sql, array('DATE_SUB(NOW(),INTERVAL 5 DAY)'));
 
 	$sql = "select tr_number, email from requests";
 	$results = $db->query($sql);
