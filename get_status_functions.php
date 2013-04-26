@@ -24,6 +24,7 @@ function fn_israpost($itemcode, $email, $periodic) {
 		return "$itemcode: Invalid Tracking number.";
 	}elseif (strrpos($txt, "The postal item was delivered") <> 0) {
 		if ($periodic) {
+			echo "periodic check $itemcode";
 			fn_send_mail($itemcode, $email, $txt);
 			fn_delete_request($itemcode, $email);
 		}

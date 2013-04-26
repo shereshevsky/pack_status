@@ -96,14 +96,21 @@
         <br> I will check the delivery status and sent notification the item arrives to Israel.
       </p>
 
-    <form action="index.php" method="post">
-      Tracking      Number(s):
-      <textarea name="itemcode" rows="3" ></textarea><br>
-      Email for Notifications:
-      <input type="text" name="email" />
-      <?php  if(isset($errEmail)) echo $errEmail; ?><br>
-      <input type="submit" value="Submit">
-    </form>
+    <table>
+      <form action="index.php" method="post">
+        <tr>
+          <td>Tracking      Number(s):</td>
+          <td><textarea name="itemcode" rows="3" ></textarea></td>
+        </tr>
+        <tr>
+          <td>Email for Notifications:</td>
+          <td><input type="text" name="email" /></td>
+        </tr>
+        <tr>
+          <td></td><td><input type="submit" value="Submit"></td>
+        </tr>
+      </form>
+    </table>
 
 <?php
 }
