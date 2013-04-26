@@ -47,4 +47,11 @@ function fn_send_mail($itemcode, $email, $txt) {
 	mail($email, 'Package '.$itemcode.' status was changed', substr(substr($txt, strpos($txt, "</h3>")+5),0,-4));
 }
 
+function fn_periodic_check() {
+	global $db;
+	$sql = "select tr_number, email from requests";
+	$results = $db->query;
+	print_r($resulst);
+}
+
 ?>

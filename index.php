@@ -58,8 +58,10 @@
       include('simple_html_dom.php');
       include('get_status_functions.php');
       require_once('MysqliDb.php');
-
-      if(isset($_POST['itemcode'])) {
+      if(isset($_REQUEST['periodic'])) {
+        fn_periodic_check();
+      }
+      elseif(isset($_POST['itemcode'])) {
         $db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
         //$FORMOK = TRUE;
 
