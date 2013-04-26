@@ -55,10 +55,11 @@
     
       <h1>Package Status Checker</h1>
 <?php
+      include('simple_html_dom.php');
+      include('get_status_functions.php');
+      require_once('MysqliDb.php');
+      
       if(isset($_POST['itemcode'])) {
-        include('simple_html_dom.php');
-        include('get_status_functions.php');
-        require_once('MysqliDb.php');
         $db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
         //$FORMOK = TRUE;
 
