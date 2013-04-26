@@ -1,7 +1,6 @@
 <?php
 
 function fn_israpost($itemcode, $email, $periodic) {
-	echo "regular check $itemcode";
 	$context = array
 	(
 	       'http' => array
@@ -25,7 +24,6 @@ function fn_israpost($itemcode, $email, $periodic) {
 		return "$itemcode: Invalid Tracking number.";
 	}elseif (strrpos($txt, "The postal item was delivered") <> 0) {
 		if ($periodic) {
-			echo "periodic check $itemcode";
 			fn_send_mail($itemcode, $email, $txt);
 			fn_delete_request($itemcode, $email);
 		}
@@ -60,7 +58,7 @@ function fn_periodic_check() {
 
 function fn_delete_request($itemcode, $email) {
 	global $db;
-	$db->Delete("requests", "email = '$email' AND tr_number = '$itemcode'"); 
+	$db->ExecuteSQL("DELETE FROM requests WHERE email = '$email' AND tr_number = '$itemcode'"); 
 }
 
 ?>
