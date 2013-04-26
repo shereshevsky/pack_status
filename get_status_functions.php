@@ -38,9 +38,7 @@ function fn_save_mail($itemcode, $email) {
 		'email' => $email,
 		'tr_number' => $itemcode
 	);
-
-	$db->insert('requests', $insertData);
-	//print_r($results);
+	$db->num_rows("INSERT INTO requests(email,tr_number) VALUES(?,?)", $email, $itemcode,); 
 }
 
 function fn_send_mail($itemcode, $email, $txt) {
@@ -51,15 +49,15 @@ function fn_periodic_check() {
 	global $db;
 	
 	$five_days_ago = date('Y-m-d', time() - (5 * 24 * 60 * 60));
-	$result = $db->query('DELETE FROM requests WHERE added < ?', array($five_days_ago));
-	$sql = "select tr_number, email from requests";
-	$results = $db->query($sql);
+	$db->num_rows('DELETE FROM requests WHERE added < ?',$five_days_ago); 
+
+	$results = $db->query("SELECT tr_number, email  FROM requests");
 	foreach ($results as $request) {
 		fn_israpost($request['tr_number'], $request['email'], true);
 	}
 
-	//echo "requests: ";
-	//print_r($results);
+	echo "requests: ";
+	print_r($results);
 }
 
 ?>
