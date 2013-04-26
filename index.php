@@ -53,7 +53,7 @@
 
     <div class="container">
     
-      <h1>Package Status Checker</h1>
+   <h1>Package Status Checker</h1>
 <?php
       include('simple_html_dom.php');
       include('get_status_functions.php');
@@ -99,7 +99,7 @@
 
     <form action="index.php" method="post">
       Tracking Number(s):
-      <textarea name="itemcode" rows="3" cols="16"></textarea><br>
+      <textarea name="itemcode" rows="3" cols="18"></textarea><br>
       Email for Notifications:
       <input type="text" name="email" />
       <?php  if(isset($errEmail)) echo $errEmail; ?><br>

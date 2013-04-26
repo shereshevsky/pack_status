@@ -33,7 +33,7 @@ static $db_user = "alexansh";
 static $db_pswd = "A1exazaz";
 static $db_name = "pack_status";
 // debugging settings
-static $debug_db = true;
+static $debug_db = false;
 static $log_file = "log.xml";
 
 class DB
