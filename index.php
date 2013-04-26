@@ -60,7 +60,7 @@
         include('get_status_functions.php');
         require_once('MysqliDb.php');
         $db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
-        $FORMOK = TRUE;
+        //$FORMOK = TRUE;
 
         $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
         $email = isset($_POST["email"])?$_POST['email']:false;;
@@ -69,25 +69,23 @@
         $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
         $itemcodeArr = array_unique($itemcodeArr);
 
-        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $email) === 0) {
-          $FORMOK = FALSE;
-        }
+        //if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $email) === 0) {
+        //  $FORMOK = FALSE;
+        //}
 
         foreach ($itemcodeArr as $item) {
-          if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
-            $FORMOK = FALSE;
-          }
-          if($FORMOK)
-            print fn_israpost($item, $email, false)."<br>";
-          else
-            header( 'Location: index.php' ) ;
-          elseif(isset($_POST['item'])) {
-            $item = isset($_POST['item'])?$_POST['item']:false;
-            $email = isset($_POST["email"])?$_POST['email']:false;
-            fn_israpost($item, $email, true);
-          }
+          //if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
+          //  $FORMOK = FALSE;
+          //}
+          print fn_israpost($item, $email, false)."<br>";
+          //else
+          //  header('Location: index.php');
         }
-        }else{
+      }elseif(isset($_POST['item'])) {
+        $item = isset($_POST['item'])?$_POST['item']:false;
+        $email = isset($_POST["email"])?$_POST['email']:false;
+        fn_israpost($item, $email, true);
+      }else{
 ?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
