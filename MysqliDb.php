@@ -157,7 +157,7 @@ class DbHandle
      */
     public function rawQuery($query, $bindParams = null)
     {
-        $this->_query = filter_var($query, FILTER_SANITIZE_STRING);
+        $this->_query = filter_var($query, FILTER_UNSAFE_RAW);
         $stmt = $this->_prepareQuery();
 
         if (is_array($bindParams) === true) {
