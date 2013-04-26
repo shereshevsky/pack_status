@@ -92,7 +92,10 @@
         fn_israpost($item, $email, true);
       }else{
 ?>
-      <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
+      <p>Bulk status checker for Israel Post with notifications about status change.
+        <br> If you have a package(s) should be delivered to Israel, just enter tracking number and email address,
+        <br> I will check the delivery status and sent notification the item arrives to Israel.
+      </p>
 
     <form action="index.php" method="post">
       Tracking Number(s):

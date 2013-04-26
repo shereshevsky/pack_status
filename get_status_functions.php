@@ -50,8 +50,8 @@ function fn_send_mail($itemcode, $email, $txt) {
 function fn_periodic_check() {
 	global $db;
 	
-	$five_days_ago = date('Y-m-d', time() - (5 * 24 * 60 * 60));
-	$db->num_rows('DELETE FROM requests WHERE added < ?',$five_days_ago); 
+	//$five_days_ago = date('Y-m-d', time() - (5 * 24 * 60 * 60));
+	//$db->num_rows('DELETE FROM requests WHERE added < ?',$five_days_ago); 
 
 	$results = $db->query("SELECT tr_number, email  FROM requests LIMIT ?",100);
 	foreach ($results as $request) {
