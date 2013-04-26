@@ -44,7 +44,7 @@ function fn_save_mail($itemcode, $email) {
 }
 
 function fn_send_mail($itemcode, $email, $txt) {
-	mail($email, 'Package '.$itemcode.'was changed', $txt);
+	mail($email, 'Package '.$itemcode.' status was changed', substr($txt, strpos($txt, "</h3>")));
 }
 
 ?>
