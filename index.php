@@ -83,7 +83,7 @@
           else
             header( 'Location: index.php' ) ;
       }elseif(isset($_POST['item'])) {
-        $item = isset($_POST['item'])?$_POST['item']):false;
+        $item = isset($_POST['item'])?$_POST['item']:false;
         $email = isset($_POST["email"])?$_POST['email']:false;
         fn_israpost($item, $email, true);
       }
