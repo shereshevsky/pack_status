@@ -98,7 +98,7 @@
 
     <form action="index.php" method="post">
       Tracking Number(s):
-      <textarea name="itemcode" rows="3" cols="18"></textarea><br>
+      <textarea name="itemcode" rows="3" ></textarea><br>
       Email for Notifications:
       <input type="text" name="email" />
       <?php  if(isset($errEmail)) echo $errEmail; ?><br>
