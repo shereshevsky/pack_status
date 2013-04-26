@@ -52,11 +52,9 @@ function fn_send_mail($itemcode, $email, $txt) {
 function fn_periodic_check() {
 	global $db;
 	$results = $db->ExecuteSQL('SELECT tr_number, email  FROM requests');
-	print_r($results);
 	foreach ($results as $request) {
-		echo "tr_number = ".$request['tr_number'].";";
-		echo "email = ".$request['email'].";";
-		fn_israpost($request['tr_number'], $request['email'], true);
+		if (is_array($request))
+			fn_israpost($request['tr_number'], $request['email'], true);
 	}
 }
 

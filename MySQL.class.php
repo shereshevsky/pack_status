@@ -281,9 +281,9 @@ class MySQL {
 	// 'Arrays' multiple result
 	function ArrayResults(){
 
-		if($this->records == 1){
-			return $this->ArrayResult();
-		}
+		// if($this->records == 1){
+		// 	return $this->ArrayResult();
+		// }
 
 		$this->arrayedResult = array();
 		while ($data = mysql_fetch_assoc($this->result)){
