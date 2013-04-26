@@ -78,7 +78,7 @@
             $FORMOK = FALSE;
           }
           if($FORMOK)
-            print fn_israpost($item, $email, false);
+            echo fn_israpost($item, $email, false)."<br>";
           else
             header( 'Location: index.php' ) ;
         }
