@@ -58,7 +58,7 @@
       include('simple_html_dom.php');
       include('get_status_functions.php');
       require_once('MysqliDb.php');
-      
+
       if(isset($_POST['itemcode'])) {
         $db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
         //$FORMOK = TRUE;
@@ -85,7 +85,6 @@
       }elseif(isset($_REQUEST['item'])) {
         $item = isset($_REQUEST['item'])?$_REQUEST['item']:false;
         $email = isset($_REQUEST["email"])?$_REQUEST['email']:false;
-        echo "backgroun checker $item, $email.";
         fn_israpost($item, $email, true);
       }else{
 ?>
