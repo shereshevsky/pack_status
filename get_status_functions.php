@@ -34,7 +34,7 @@ function fn_save_mail($itemcode, $email) {
 	global $db;
 	$insertData = array(
 		'email' => '$email',
-		'itemcode' => '$itemcode'
+		'tr_number' => '$itemcode'
 	);
 
 	$db->insert('requests', $insertData);
