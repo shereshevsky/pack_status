@@ -52,7 +52,7 @@ function fn_periodic_check() {
 	$sql = "select tr_number, email from requests";
 	$results = $db->query($sql);
 	echo "requests: ";
-	print_r($resulst);
+	print_r($results);
 }
 
 ?>
