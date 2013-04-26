@@ -50,8 +50,8 @@ function fn_send_mail($itemcode, $email, $txt) {
 function fn_periodic_check() {
 	global $db;
 	
-	$sql = "delete from requests where added < ?";
-	$db->rawQuery($sql, array('DATE_SUB(NOW(),INTERVAL 5 DAY)'));
+	$ts = $five_days_ago = time() - (5 * 24 * 60 * 60);
+	$db->rawQuery('delete from requests where added < ?', array($ts));
 
 	$sql = "select tr_number, email from requests";
 	$results = $db->query($sql);
