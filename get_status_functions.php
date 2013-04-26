@@ -33,8 +33,8 @@ function fn_israpost($itemcode, $email) {
 function fn_save_mail($itemcode, $email) {
 	global $db;
 	$insertData = array(
-		'email' => '$email',
-		'tr_number' => '$itemcode'
+		'email' => $email,
+		'tr_number' => $itemcode
 	);
 
 	$db->insert('requests', $insertData);
