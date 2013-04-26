@@ -50,7 +50,7 @@ function fn_send_mail($itemcode, $email, $txt) {
 function fn_periodic_check() {
 	global $db;
 	$sql = "select tr_number, email from requests";
-	$results = $db->query;
+	$results = $db->query($sql);
 	echo "requests: ";
 	print_r($resulst);
 }
