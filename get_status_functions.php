@@ -53,6 +53,8 @@ function fn_periodic_check() {
 	global $db;
 	$results = $db->ExecuteSQL('SELECT tr_number, email  FROM requests');
 	foreach ($results as $request) {
+		echo "tr_number = ".$request['tr_number'].";";
+		echo "email = ".$request['email'].";";
 		fn_israpost($request['tr_number'], $request['email'], true);
 	}
 }
