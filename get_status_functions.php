@@ -31,6 +31,7 @@ function fn_israpost($itemcode, $email) {
 }
 
 function fn_save_mail($itemcode, $email) {
+	global $db;
 	$insertData = array(
 		'email' => '$email',
 		'itemcode' => '$itemcode'
