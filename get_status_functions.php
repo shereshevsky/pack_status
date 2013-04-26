@@ -1,7 +1,6 @@
 <?php
 
 function fn_israpost($itemcode, $email, $periodic) {
-
 	$context = array
 	(
 	       'http' => array
@@ -10,11 +9,8 @@ function fn_israpost($itemcode, $email, $periodic) {
 	        //      'request_fulluri' => true, 
 	       ),
 	);
-
 	$context = stream_context_create($context); 
-	 
 	$html= file_get_html("http://www.israelpost.co.il/itemtrace.nsf/mainsearch?OpenForm&L=EN&itemcode=$itemcode", false, $context);
-
 	$txt = "";
 	foreach($html->find('div#itemcodeinfoPrt') as $e)
 		$txt .= $e->innertext . '<br>';

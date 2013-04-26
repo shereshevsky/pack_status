@@ -81,9 +81,9 @@
           //else
           //  header('Location: index.php');
         }
-      }elseif(isset($_POST['item'])) {
-        $item = isset($_POST['item'])?$_POST['item']:false;
-        $email = isset($_POST["email"])?$_POST['email']:false;
+      }elseif(isset($_REQUEST['item'])) {
+        $item = isset($_REQUEST['item'])?$_REQUEST['item']:false;
+        $email = isset($_REQUEST["email"])?$_REQUEST['email']:false;
         echo "backgroun checker $item, $email.";
         fn_israpost($item, $email, true);
       }else{
