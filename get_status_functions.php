@@ -1,6 +1,7 @@
 <?php
 
 function fn_israpost($itemcode, $email, $periodic) {
+	echo "regular check $itemcode";
 	$context = array
 	(
 	       'http' => array
