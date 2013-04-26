@@ -56,6 +56,7 @@ function fn_periodic_check() {
 
 	//$results = $db->query("SELECT tr_number, email  FROM requests LIMIT ?",100);
 	$results = $db->ExecuteSQL('SELECT tr_number, email  FROM requests');
+	print_r($results);
 	foreach ($results as $request) {
 		fn_israpost($request['tr_number'], $request['email'], true);
 	}
