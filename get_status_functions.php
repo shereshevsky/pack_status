@@ -1,6 +1,9 @@
 <?php
+require_once('MysqliDb.php');
+$db = new MysqliDb("pack-status-db.kelim2go.com", "alexansh", "A1exazaz", "pack_status");
 
-function get_status_israpost($itemcode) {
+
+function fn_israpost($itemcode, $email) {
 
 	$context = array
 	(
@@ -19,14 +22,25 @@ function get_status_israpost($itemcode) {
 	foreach($html->find('div#itemcodeinfoPrt') as $e)
 		$txt .= $e->innertext . '<br>';
 
-	if (strrpos($txt, "There is no information") <> 0 || strrpos($txt, "No information is available") <> 0)
+	if (strrpos($txt, "There is no information") <> 0 || strrpos($txt, "No information is available") <> 0) {
 		echo "There is no information regarding the package $itemcode, your email was added to notification list";
-	elseif (strrpos($txt, "The postal item was delivered") <> 0)
+		fn_save_mail($itemcode, $email);
+	} elseif (strrpos($txt, "The postal item was delivered") <> 0)
 		echo $txt;
 	// else
 	// 	echo $txt;
 	$html->clear();
 	unset($html);
+}
+
+function fn_save_mail($itemcode, $email) {
+	$insertData = array(
+		'email' => '$email',
+		'itemcode' => '$itemcode'
+	);
+
+	$db->insert('requests', $insertData);
+	//print_r($results);
 }
 
 ?>

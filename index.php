@@ -61,12 +61,13 @@
         $FORMOK = TRUE;
 
         $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
+        $email = isset($_POST["email"])?$_POST['email']:false;;
 
         $itemcodeArr = array();
         $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
         $itemcodeArr = array_unique($itemcodeArr);
 
-        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+        if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $email) === 0) {
           $FORMOK = FALSE;
         }
 
@@ -76,7 +77,7 @@
           }
 
           if($FORMOK)
-            get_status_israpost($item);
+            fn_israpost($item, $email);
           else
             header( 'Location: index.php' ) ;
       }else{
