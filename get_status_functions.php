@@ -1,6 +1,6 @@
 <?php
 
-function fn_israpost($itemcode, $email) {
+function fn_israpost($itemcode, $email, $periodic) {
 
 	$context = array
 	(
@@ -18,16 +18,20 @@ function fn_israpost($itemcode, $email) {
 	$txt = "";
 	foreach($html->find('div#itemcodeinfoPrt') as $e)
 		$txt .= $e->innertext . '<br>';
-
+		$html->clear();
+		unset($html);
 	if (strrpos($txt, "There is no information") <> 0 || strrpos($txt, "No information is available") <> 0) {
-		echo "There is no information regarding the package $itemcode, your email was added to notification list";
 		fn_save_mail($itemcode, $email);
-	} elseif (strrpos($txt, "The postal item was delivered") <> 0)
-		echo $txt;
-	else
-		echo $txt;
-	$html->clear();
-	unset($html);
+		return "There is no information regarding the package $itemcode, your email was added to notification list";
+	} elseif (strrpos($txt, "The postal item was delivered") <> 0) {
+		if ($periodic)
+			fn_send_mail($itemcode, $email, $txt)
+		else 
+			return $txt;
+	}
+	else{
+		return $txt;
+	}
 }
 
 function fn_save_mail($itemcode, $email) {
@@ -39,6 +43,10 @@ function fn_save_mail($itemcode, $email) {
 
 	$db->insert('requests', $insertData);
 	//print_r($results);
+}
+
+function fn_send_mail($itemcode, $email, $txt) {
+	mail($email, 'Package '.$itemcode.'was changed', $txt);
 }
 
 ?>

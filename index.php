@@ -79,10 +79,14 @@
           }
 
           if($FORMOK)
-            fn_israpost($item, $email);
+            print fn_israpost($item, $email, false);
           else
             header( 'Location: index.php' ) ;
-      }else{
+      }elseif if(isset($_POST['item'])) {
+        $item = isset($_POST['item'])?$_POST['item']):false;
+        $email = isset($_POST["email"])?$_POST['email']:false;
+        fn_israpost($item, $email, true);
+      }
 ?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
