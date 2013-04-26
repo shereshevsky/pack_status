@@ -27,8 +27,8 @@ function fn_israpost($itemcode, $email) {
 		fn_save_mail($itemcode, $email);
 	} elseif (strrpos($txt, "The postal item was delivered") <> 0)
 		echo $txt;
-	// else
-	// 	echo $txt;
+	else
+		echo $txt;
 	$html->clear();
 	unset($html);
 }
