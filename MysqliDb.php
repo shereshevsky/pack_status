@@ -186,7 +186,7 @@ class DbHandle
      */
     public function query($query, $numRows = null)
     {
-        $this->_query = filter_var($query, FILTER_SANITIZE_STRING);
+        $this->_query = filter_var($query, FILTER_UNSAFE_RAW);
         $stmt = $this->_buildQuery($numRows);
         $stmt->execute();
         $this->reset();
