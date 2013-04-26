@@ -57,9 +57,8 @@
 <?php
       include('simple_html_dom.php');
       include('get_status_functions.php');
-      require_once "DB.php";
-      require_once "DB_Connect.php"; 
-      $db = new DB();
+      include_once('MySQL.class.php');
+      $db = new MySQL('pack_status', 'alexansh', 'A1exazaz', 'pack-status-db.kelim2go.com');
 
       if(isset($_REQUEST['periodic'])) {
         fn_periodic_check();
