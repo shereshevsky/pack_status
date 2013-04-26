@@ -77,16 +77,16 @@
           if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
             $FORMOK = FALSE;
           }
-
           if($FORMOK)
             print fn_israpost($item, $email, false);
           else
             header( 'Location: index.php' ) ;
-      }elseif(isset($_POST['item'])) {
-        $item = isset($_POST['item'])?$_POST['item']:false;
-        $email = isset($_POST["email"])?$_POST['email']:false;
-        fn_israpost($item, $email, true);
-      }
+        }
+        elseif(isset($_POST['item'])) {
+          $item = isset($_POST['item'])?$_POST['item']:false;
+          $email = isset($_POST["email"])?$_POST['email']:false;
+          fn_israpost($item, $email, true);
+        }else{
 ?>
       <p>Simple status checker for packages delivered to Israel.<br> Just enter tracking number(s) to check.</p>
 
