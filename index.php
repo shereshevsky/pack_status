@@ -92,8 +92,8 @@
       }else{
 ?>
       <p>Bulk status checker for Israel Post with notifications about status change.
-        <br> If you have a package(s) should be delivered to Israel, just enter tracking number and email address,
-        <br> I will check the delivery status and sent notification the item arrives to Israel.
+        <br> If you have a package(s) should be delivered to Israel, just enter tracking number(s) and email address,
+        <br> I will check the delivery status and sent notification when the item arrives to Israel.
       </p>
 
     <table>
@@ -115,6 +115,12 @@
 <?php
 }
 ?>
+
+<hr>
+
+  <div class="footer">
+    <p>&copy; <a href="mailto:shereshevsky@gmail.com">Alexander Shereshevsky</a> 2013</p>
+  </div>
 
     </div> <!-- /container -->
 
