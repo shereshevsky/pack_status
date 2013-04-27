@@ -65,7 +65,6 @@
           fn_periodic_check();
         }
         elseif(isset($_POST['itemcode'])) {
-          //$FORMOK = TRUE;
   
           $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
           $email = isset($_POST["email"])?$_POST['email']:false;;
@@ -75,16 +74,10 @@
           $itemcodeArr = array_unique($itemcodeArr);
   
           //if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $email) === 0) {
-          //  $FORMOK = FALSE;
-          //}
   
           foreach ($itemcodeArr as $item) {
             //if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
-            //  $FORMOK = FALSE;
-            //}
             print fn_israpost($item, $email, false)."<br>";
-            //else
-            //  header('Location: index.php');
           }
         }elseif(isset($_REQUEST['item'])) {
           $item = isset($_REQUEST['item'])?$_REQUEST['item']:false;
