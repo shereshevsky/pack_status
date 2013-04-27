@@ -51,86 +51,85 @@
       </div>
     </div>
 
-    <div class="container">
-    
-   <h1>Package Status Checker</h1>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span10">
+          <h1>Package Status Checker</h1>
 <?php
-      include('simple_html_dom.php');
-      include('get_status_functions.php');
-      include_once('MySQL.class.php');
-      $db = new MySQL('pack_status', 'alexansh', 'A1exazaz', 'pack-status-db.kelim2go.com');
-
-      if(isset($_REQUEST['periodic'])) {
-        fn_periodic_check();
-      }
-      elseif(isset($_POST['itemcode'])) {
-        //$FORMOK = TRUE;
-
-        $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
-        $email = isset($_POST["email"])?$_POST['email']:false;;
-
-        $itemcodeArr = array();
-        $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
-        $itemcodeArr = array_unique($itemcodeArr);
-
-        //if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $email) === 0) {
-        //  $FORMOK = FALSE;
-        //}
-
-        foreach ($itemcodeArr as $item) {
-          //if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
+        include('simple_html_dom.php');
+        include('get_status_functions.php');
+        include_once('MySQL.class.php');
+        $db = new MySQL('pack_status', 'alexansh', 'A1exazaz', 'pack-status-db.kelim2go.com');
+  
+        if(isset($_REQUEST['periodic'])) {
+          fn_periodic_check();
+        }
+        elseif(isset($_POST['itemcode'])) {
+          //$FORMOK = TRUE;
+  
+          $itemcode = isset($_POST['itemcode'])?preg_replace("/[^A-Za-z0-9\r\n]/u", "", $_POST['itemcode']):false;
+          $email = isset($_POST["email"])?$_POST['email']:false;;
+  
+          $itemcodeArr = array();
+          $itemcodeArr = preg_split("/\r\n/",$itemcode,-1,PREG_SPLIT_NO_EMPTY);
+          $itemcodeArr = array_unique($itemcodeArr);
+  
+          //if(preg_match("/^[a-zA-Z]\w+(\.\w+)*\@\w+(\.[0-9a-zA-Z]+)*\.[a-zA-Z]{2,4}$/", $email) === 0) {
           //  $FORMOK = FALSE;
           //}
-          print fn_israpost($item, $email, false)."<br>";
-          //else
-          //  header('Location: index.php');
-        }
-      }elseif(isset($_REQUEST['item'])) {
-        $item = isset($_REQUEST['item'])?$_REQUEST['item']:false;
-        $email = isset($_REQUEST["email"])?$_REQUEST['email']:false;
-        fn_israpost($item, $email, true);
-      }else{
-?>
-      <p>Bulk status checker for Israel Post with notifications about status change.
-        <br> If you have a package(s) should be delivered to Israel, just enter tracking number(s) and email address,
-        <br> I will check the delivery status and sent notification when the item arrives to Israel.
-      </p>
-
-    <table>
-      <form action="index.php" method="post">
-        <tr>
-          <td>Tracking      Number(s):</td>
-          <td><textarea name="itemcode" rows="3" ></textarea></td>
-        </tr>
-        <tr>
-          <td>Email for Notifications:</td>
-          <td><input type="text" name="email" /></td>
-        </tr>
-        <tr>
-          <td></td><td><input type="submit" value="Submit"></td>
-        </tr>
-      </form>
-    </table>
-
+  
+          foreach ($itemcodeArr as $item) {
+            //if(preg_match("/^\D{2}\d{9}\D{2}$|^9\d{15,21}$/", $item) === 0) {
+            //  $FORMOK = FALSE;
+            //}
+            print fn_israpost($item, $email, false)."<br>";
+            //else
+            //  header('Location: index.php');
+          }
+        }elseif(isset($_REQUEST['item'])) {
+          $item = isset($_REQUEST['item'])?$_REQUEST['item']:false;
+          $email = isset($_REQUEST["email"])?$_REQUEST['email']:false;
+          fn_israpost($item, $email, true);
+        }else{
+  ?>
+        <p>Bulk status checker for Israel Post with notifications about status change.
+          <br> If you have a package(s) should be delivered to Israel, just enter tracking number(s) and email address,
+          <br> I will check the delivery status and sent notification when the item arrives to Israel.
+        </p>
+  
+      <table>
+        <form action="index.php" method="post">
+          <tr>
+            <td>Tracking      Number(s):</td>
+            <td><textarea name="itemcode" rows="3" ></textarea></td>
+          </tr>
+          <tr>
+            <td>Email for Notifications:</td>
+            <td><input type="text" name="email" /></td>
+          </tr>
+          <tr>
+            <td></td><td><input type="submit" value="Submit"></td>
+          </tr>
+        </form>
+      </table>
 <?php
 }
 ?>
-
-<div class="row-fluid">
-  <div class="span2">
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-6913896091659544";
-  /* right block pack_stat */
-  google_ad_slot = "7134357492";
-  google_ad_width = 160;
-  google_ad_height = 600;
-  //-->
-  </script>
-  <script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-  </div>
-</div>
+    </div>
+      <div class="span2">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-6913896091659544";
+        /* right block pack_stat */
+        google_ad_slot = "7134357492";
+        google_ad_width = 160;
+        google_ad_height = 600;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
+    </div>
 
 <hr>
 
