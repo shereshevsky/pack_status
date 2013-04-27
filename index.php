@@ -116,6 +116,22 @@
 }
 ?>
 
+<div class="row-fluid">
+  <div class="span2">
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-6913896091659544";
+  /* right block pack_stat */
+  google_ad_slot = "7134357492";
+  google_ad_width = 160;
+  google_ad_height = 600;
+  //-->
+  </script>
+  <script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+  </div>
+</div>
+
 <hr>
 
   <div class="footer">
