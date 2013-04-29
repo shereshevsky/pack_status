@@ -162,6 +162,32 @@ class MySQL {
 		return $this->ExecuteSQL($query);
 	}
 
+	function Replace($vars, $table, $exclude = ''){
+
+		// Catch Exclusions
+		if($exclude == ''){
+			$exclude = array();
+		}
+
+		array_push($exclude, 'MAX_FILE_SIZE'); // Automatically exclude this one
+
+		// Prepare Variables
+		$vars = $this->SecureData($vars);
+
+		$query = "REPLACE INTO `{$table}` SET ";
+		foreach($vars as $key=>$value){
+			if(in_array($key, $exclude)){
+				continue;
+			}
+			//$query .= '`' . $key . '` = "' . $value . '", ';
+			$query .= "`{$key}` = '{$value}', ";
+		}
+
+		$query = substr($query, 0, -2);
+
+		return $this->ExecuteSQL($query);
+	}
+
 	// Deletes a record from the database
 	function Delete($table, $where='', $limit='', $like=false){
 		$query = "DELETE FROM `{$table}` WHERE ";

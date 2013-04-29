@@ -40,7 +40,7 @@ function fn_save_mail($itemcode, $email) {
 		'email' => $email,
 		'tr_number' => $itemcode
 	);
-	$db->Insert($insertData, 'requests'); 
+	$db->Replace($insertData, 'requests');
 }
 
 function fn_send_mail($itemcode, $email, $txt) {
