@@ -38,7 +38,7 @@ function fn_save_mail($itemcode, $email) {
 	global $db;
 	$insertData = array(
 		'email' => $email,
-		'tr_number' => $itemcode
+		'tr_number' => strtoupper($itemcode)
 	);
 	$db->Replace($insertData, 'requests');
 }
