@@ -58,7 +58,9 @@ function fn_periodic_check() {
 
 function fn_delete_request($itemcode, $email) {
 	global $db;
+	$db->ExecuteSQL("INSERT INTO requests_his (added, email, tr_number) 
+					SELECT added, email, tr_number 
+					FROM requests WHERE email = '$email' AND tr_number = '$itemcode'"); 
 	$db->ExecuteSQL("DELETE FROM requests WHERE email = '$email' AND tr_number = '$itemcode'"); 
 }
-
 ?>
