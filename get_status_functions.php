@@ -44,7 +44,10 @@ function fn_save_mail($itemcode, $email) {
 }
 
 function fn_send_mail($itemcode, $email, $txt) {
-	mail($email, 'Package '.$itemcode.' status was changed', substr(substr($txt, strpos($txt, "</h3>")+5),0,-4)."\r\n http://www.kelim2go.com/pack_status/");
+	$headers = "From: a‫dmin@kelim2go.com\r\n";
+	$headers .= "Reply-To: ‫admin@kelim2go.com\r\n";
+	$headers .= "X-Mailer: PHP/".phpversion();
+	mail($email, 'Package '.$itemcode.' status was changed', substr(substr($txt, strpos($txt, "</h3>")+5),0,-4)."\r\n http://www.kelim2go.com/pack_status/", $headers);
 }
 
 function fn_periodic_check() {
