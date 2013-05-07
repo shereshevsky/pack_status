@@ -22,7 +22,7 @@ function fn_israpost($itemcode, $email, $periodic) {
 		return "$itemcode: There is no information regarding the package, your email was added to notification list";
 	}elseif (strrpos($txt, "ברקוד לא חוקי") <> 0 || strrpos($txt, "The item code typed is invalid or misstyped") <> 0) {
 		return "$itemcode: Invalid Tracking number.";
-	}elseif (strrpos($txt, "The postal item was delivered") <> 0 || (strrpos($txt, "The postal item arrived") <> 0) {
+	}elseif (strrpos($txt, "The postal item was delivered") <> 0 || strrpos($txt, "The postal item arrived") <> 0) {
 		if ($periodic) {
 			fn_send_mail($itemcode, $email, $txt);
 			fn_delete_request($itemcode, $email);
